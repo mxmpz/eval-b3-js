@@ -26,7 +26,33 @@ const createKennel = async (kennel) => {
   return savedKennelObject
 }
 
+// Fonction pour lister tout les chenils
+const getKennels = async () => {
+  // On liste les chenils
+  const kennels = await Kennel.find()
+  return kennels
+}
+
+// Fonction pour lister un chenil grâce à son id
+const getKennelById = async (id) => {
+
+  // On vérifie si l'ID existe
+  if (!id) {
+    //Sinon on relève une erreur
+    throw new Error('Missing ID')
+  }
+
+  // On liste les informations des chenils
+  const kennel = await Kennel.findById(id)
+
+  const kennelObject = kennel.toObject()
+
+  return kennelObject
+}
+
 // On exporte les fonctions
 module.exports = {
-  createKennel
+  createKennel,
+  getKennels,
+  getKennelById
 }
