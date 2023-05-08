@@ -36,5 +36,16 @@ router.route('/:id')
       return res.status(500).send(error)
     }
   })
-  
+
+  // Met à jour un utilisateur précis
+  .patch(async (req, res) => {
+    try {
+      const user = await updateUserById(req.params.id, req.body)
+      return res.send(user)
+    } catch (error) {
+      console.error(error)
+      return res.status(500).send(error)
+    }
+  })
+
 module.exports = router
