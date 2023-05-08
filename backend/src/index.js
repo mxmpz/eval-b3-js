@@ -12,9 +12,17 @@ connect()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+// On importe le logger
+const logger = require('./middlewares/logger')
+// On dit à Express d'utiliser le logger en tant que middleware
+app.use(logger)
+
 // On branche les route users sur le fichier correspondant, le nom index.js est utilisé par défaut.
 app.use('/users', require('./routes/users'))
 app.use('/users/{id}', require('./routes/users'))
+
+// On branche la route auth sur le fichier correspondant, le nom index.js est utilisé par défaut.
+app.use('/auth', require('./routes/auth'))
 
 // On branche les route kennels sur le fichier correspondant, le nom index.js est utilisé par défaut.
 app.use('/kennels', require('./routes/kennels'))
