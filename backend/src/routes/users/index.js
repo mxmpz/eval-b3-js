@@ -3,6 +3,7 @@ const router = require('express').Router()
 
 // Methode pouvant être utilisé par défaut
 router.route('/')
+
   // Afficher les utilisateurs
   .get(async (req, res) => {
     const users = await getUsers()
@@ -22,4 +23,18 @@ router.route('/')
     }
   })
 
+// Methode nécessitant une donnée (id) pour pouvoir être utilisé
+router.route('/:id')
+
+  // Afficher un utilisateur précis
+  .get(async (req, res) => {
+    try {
+      const user = await getUserByID(req.params.id)
+      return res.send(user)
+    } catch (error) {
+      console.error(error)
+      return res.status(500).send(error)
+    }
+  })
+  
 module.exports = router

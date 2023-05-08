@@ -14,10 +14,7 @@ app.use(express.json())
 
 // On branche les route users sur le fichier correspondant, le nom index.js est utilisé par défaut.
 app.use('/users', require('./routes/users'))
-
-app.get('/', (req, res) => {
-  res.send('Hello world Express !')
-})
+app.use('/users/{id}', require('./routes/users'))
 
 app.listen(port, () => {
   console.log('Server is running on port ' + port)
