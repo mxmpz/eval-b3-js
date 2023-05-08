@@ -16,6 +16,14 @@ app.use(express.json())
 app.use('/users', require('./routes/users'))
 app.use('/users/{id}', require('./routes/users'))
 
+// On branche les route kennels sur le fichier correspondant, le nom index.js est utilisé par défaut.
+app.use('/kennels', require('./routes/kennels'))
+app.use('/kennels/{id}', require('./routes/kennels'))
+
+// On branche les route dogs sur le fichier correspondant, le nom index.js est utilisé par défaut.
+app.use('/dogs', require('./routes/dogs'))
+app.use('/dogs/{id}', require('./routes/dogs'))
+
 app.listen(port, () => {
   console.log('Server is running on port ' + port)
 })
