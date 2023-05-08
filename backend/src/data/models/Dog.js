@@ -7,19 +7,19 @@ const dogSchema = new Schema({
     type: String
   },
   weight: {
-    type: String
+    type: Number
   },
   height: {
-    type: String
+    type: Number
   },
   description: {
     type: String
   },
   age: {
-    type: String
+    type: Number
   },
   price: {
-    type: String
+    type: Number
   },
 
   // Un chien est recueilli par un chenil, donc on référence le chenil dans lequel le chien est recueilli
