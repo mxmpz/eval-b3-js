@@ -29,7 +29,25 @@ const createUser = async (user) => {
   return savedUserObject
 }
 
+// Fonction pour lister tout les utilisateurs
+const getUsers = async () => {
+  const users = await User.find().select('-password')
+  return users
+}
+
+// Permet de lister un utilisateur grâce à son id
+const getUserById = async (id) => {
+  if (!id) {
+    throw new Error('Missing ID')
+  }
+  const user = await User.findById(id).select('-password')
+  const userObject = user.toObject()
+  return userObject
+}
+
 // Exports des fonctions nécessaires
 module.exports = {
-  createUser
+  createUser,
+  getUsers,
+  getUserById
 }
