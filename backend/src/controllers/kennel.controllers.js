@@ -50,9 +50,47 @@ const getKennelById = async (id) => {
   return kennelObject
 }
 
+// Fonction pour mettre à jour un chenil
+const updateKennelById = async (id, kennel) => {
+
+  // On vérifie si l'ID existe
+  if (!id) {
+    //Sinon on relève une erreur
+    throw new Error('Missing ID')
+  }
+
+  // On vérifie si le chenil existe
+  if (!kennel) {
+    //Sinon on relève une erreur
+    throw new Error('Missing chenil')
+  }
+
+  // On liste les nouvelles informations du chenil
+  const kennelUp = await Kennel.findByIdAndUpdate(id, kennel, { new: true })
+
+  const kennelObject = kennelUp.toObject()
+
+  return kennelObject
+}
+
+// Fonction pour supprimer un chenil à partir de son id
+const deleteKennelById = async (id) => {
+
+  // On vérifie si l'ID existe
+  if (!id) {
+    //Sinon on relève une erreur
+    throw new Error('Missing ID')
+  }
+
+  // On supprime le chenil
+  await Kennel.findByIdAndDelete(id)
+}
+
 // On exporte les fonctions
 module.exports = {
   createKennel,
   getKennels,
-  getKennelById
+  getKennelById,
+  updateKennelById,
+  deleteKennelById
 }
