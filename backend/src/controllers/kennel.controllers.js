@@ -1,0 +1,1 @@
+const Kennel = require('../data/models/Kennel')
