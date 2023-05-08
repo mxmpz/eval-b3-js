@@ -1,4 +1,5 @@
 const Kennel = require('../data/models/Kennel')
+const Dog = require('../data/models/Dog')
 
 // Fonction pour créer un chenil
 const createKennel = async (kennel) => {
@@ -62,7 +63,7 @@ const updateKennelById = async (id, kennel) => {
   // On vérifie si le chenil existe
   if (!kennel) {
     //Sinon on relève une erreur
-    throw new Error('Missing chenil')
+    throw new Error('Missing kennel')
   }
 
   // On liste les nouvelles informations du chenil
@@ -82,7 +83,8 @@ const deleteKennelById = async (id) => {
     throw new Error('Missing ID')
   }
 
-  // On supprime le chenil
+  // On supprime le chenil et les chiens associés  à ce dernier
+  await Dog.remove({ dog: id }).exec()
   await Kennel.findByIdAndDelete(id)
 }
 
