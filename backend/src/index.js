@@ -1,0 +1,13 @@
+require('dotenv').config()
+
+const express = require('express')
+const app = express()
+const port = 3000
+
+// Connexion à la base de données
+const connect = require('./data/helpers/db')
+connect()
+
+// Paramétrage de Express pour le body et le JSON
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
