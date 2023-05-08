@@ -1,4 +1,5 @@
 const { getKennels, createKennel, getKennelByID, updateKennelById, deleteKennelById } = require('../../controllers/kennels.controller')
+const withAuth = require('../../middlewares/auth')
 const router = require('express').Router()
 
 // Methode pouvant être utilisé par défaut
@@ -11,7 +12,7 @@ router.route('/')
   })
 
   // Créer un chenil
-  .post(async (req, res) => {
+  .post(withAuth, async (req, res) => {
     try {
       // Appel la méthode du contrôleur
       const kennelCreated = await createKennel(req.body)
@@ -38,7 +39,7 @@ router.route('/:id')
   })
 
   // Met à jour un chenil précis
-  .patch(async (req, res) => {
+  .patch(withAuth, async (req, res) => {
     try {
       const kennel = await updateKennelById(req.params.id, req.body)
       return res.send(kennel)
@@ -49,7 +50,7 @@ router.route('/:id')
   })
   
   // Supprime un chenil précis
-  .delete(async (req, res) => {
+  .delete(withAuth, async (req, res) => {
     try {
       await deleteKennelById(req.params.id)
       return res.send(`Kennel (ID ${req.params.id}) as been deleted`)

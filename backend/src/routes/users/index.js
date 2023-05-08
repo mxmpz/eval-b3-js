@@ -1,17 +1,18 @@
 const { getUsers, createUser, getUserByID, updateUserById, deleteUserById } = require('../../controllers/users.controller')
+const withAuth = require('../../middlewares/auth')
 const router = require('express').Router()
 
 // Methode pouvant être utilisé par défaut
 router.route('/')
 
   // Afficher les utilisateurs
-  .get(async (req, res) => {
+  .get(withAuth, async (req, res) => {
     const users = await getUsers()
     return res.send(users)
   })
 
   // Créer un utilisateur
-  .post(async (req, res) => {
+  .post(withAuth,async (req, res) => {
     try {
       // Appel la méthode du contrôleur
       const userCreated = await createUser(req.body)
@@ -27,7 +28,7 @@ router.route('/')
 router.route('/:id')
 
   // Afficher un utilisateur précis
-  .get(async (req, res) => {
+  .get(withAuth, async (req, res) => {
     try {
       const user = await getUserByID(req.params.id)
       return res.send(user)
@@ -38,7 +39,7 @@ router.route('/:id')
   })
 
   // Met à jour un utilisateur précis
-  .patch(async (req, res) => {
+  .patch(withAuth, async (req, res) => {
     try {
       const user = await updateUserById(req.params.id, req.body)
       return res.send(user)
@@ -49,7 +50,7 @@ router.route('/:id')
   })
   
   // Supprime un utilisateur précis
-  .delete(async (req, res) => {
+  .delete(withAuth, async (req, res) => {
     try {
       await deleteUserById(req.params.id)
       return res.send(`User (ID ${req.params.id}) as been deleted`)

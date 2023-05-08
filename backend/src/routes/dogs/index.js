@@ -1,4 +1,5 @@
 const { getDogs, createDog, getDogByID, updateDogById, deleteDogById } = require('../../controllers/dogs.controller')
+const withAuth = require('../../middlewares/auth')
 const router = require('express').Router()
 
 // Methode pouvant être utilisé par défaut
@@ -11,7 +12,7 @@ router.route('/')
   })
 
   // Créer un chien
-  .post(async (req, res) => {
+  .post(withAuth, async (req, res) => {
     try {
       // Appel la méthode du contrôleur
       const dogCreated = await createDog(req.body)
@@ -38,7 +39,7 @@ router.route('/:id')
   })
 
   // Met à jour un chien précis
-  .patch(async (req, res) => {
+  .patch(withAuth, async (req, res) => {
     try {
       const dog = await updateDogById(req.params.id, req.body)
       return res.send(dog)
@@ -49,7 +50,7 @@ router.route('/:id')
   })
   
   // Supprime un chien précis
-  .delete(async (req, res) => {
+  .delete(withAuth, async (req, res) => {
     try {
       await deleteDogById(req.params.id)
       return res.send(`Dog (ID ${req.params.id}) as been deleted`)
