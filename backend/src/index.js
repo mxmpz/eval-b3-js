@@ -4,7 +4,7 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 const app = express()
-const port = 3000
+const port = 5000
 
 // Connexion à la base de données
 const connect = require('./data/helpers/db')
