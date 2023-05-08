@@ -67,7 +67,7 @@ const updateUserById = async (id, user) => {
     //Sinon on relève une erreur
     throw new Error('Missing user')
   }
-  
+
   // On liste les nouvelles informations de l'utilisateurs sans afficher le password
   const userUp = await User.findByIdAndUpdate(id, user, { new: true }).select('-password')
 
@@ -76,10 +76,24 @@ const updateUserById = async (id, user) => {
   return userObject
 }
 
-// Exports des fonctions nécessaires
+// Fonction pour supprimer un utilisateur à partir de son id
+const deleteUserById = async (id) => {
+
+  // On vérifie si l'ID existe
+  if (!id) {
+    //Sinon on relève une erreur
+    throw new Error('Missing ID')
+  }
+
+  // On supprime l'utilisateur
+  await User.findByIdAndDelete(id)
+}
+
+// On exporte les fonctions
 module.exports = {
   createUser,
   getUsers,
   getUserById,
-  updateUserById
+  updateUserById,
+  deleteUserById
 }
