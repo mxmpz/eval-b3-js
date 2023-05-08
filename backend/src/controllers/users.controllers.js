@@ -68,7 +68,7 @@ const updateUserById = async (id, user) => {
     throw new Error('Missing user')
   }
 
-  // On liste les nouvelles informations de l'utilisateurs sans afficher le password
+  // On liste les nouvelles informations de l'utilisateur sans afficher le password
   const userUp = await User.findByIdAndUpdate(id, user, { new: true }).select('-password')
 
   const userObject = userUp.toObject()
