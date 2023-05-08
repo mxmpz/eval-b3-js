@@ -3,9 +3,8 @@ const Dog = require('../data/models/Dog')
 
 // Fonction pour créer un chenil
 const createKennel = async (kennel) => {
-
-    // On créer un chenil en respectant le schéma
-   const _kennel = new Kennel({
+  // On créer un chenil en respectant le schéma
+  const _kennel = new Kennel({
     name: kennel.name,
     description: kennel.description,
     adress: {
@@ -36,10 +35,9 @@ const getKennels = async () => {
 
 // Fonction pour lister un chenil grâce à son id
 const getKennelById = async (id) => {
-
   // On vérifie si l'ID existe
   if (!id) {
-    //Sinon on relève une erreur
+    // Sinon on relève une erreur
     throw new Error('Missing ID')
   }
 
@@ -53,16 +51,15 @@ const getKennelById = async (id) => {
 
 // Fonction pour mettre à jour un chenil
 const updateKennelById = async (id, kennel) => {
-
   // On vérifie si l'ID existe
   if (!id) {
-    //Sinon on relève une erreur
+    // Sinon on relève une erreur
     throw new Error('Missing ID')
   }
 
   // On vérifie si le chenil existe
   if (!kennel) {
-    //Sinon on relève une erreur
+    // Sinon on relève une erreur
     throw new Error('Missing kennel')
   }
 
@@ -76,10 +73,9 @@ const updateKennelById = async (id, kennel) => {
 
 // Fonction pour supprimer un chenil à partir de son id
 const deleteKennelById = async (id) => {
-
   // On vérifie si l'ID existe
   if (!id) {
-    //Sinon on relève une erreur
+    // Sinon on relève une erreur
     throw new Error('Missing ID')
   }
 
