@@ -47,5 +47,16 @@ router.route('/:id')
       return res.status(500).send(error)
     }
   })
+  
+  // Supprime un utilisateur précis
+  .delete(async (req, res) => {
+    try {
+      await deleteUserById(req.params.id)
+      return res.send(`User (ID ${req.params.id}) as been deleted`)
+    } catch (error) {
+      console.error(error)
+      return res.status(500).send(error)
+    }
+  })
 
 module.exports = router
