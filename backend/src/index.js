@@ -22,19 +22,19 @@ const logger = require('./middlewares/logger')
 app.use(logger)
 
 // On branche les route users sur le fichier correspondant, le nom index.js est utilisé par défaut.
-app.use('/users', require('./routes/users'))
-app.use('/users/{id}', require('./routes/users'))
+app.use('/api/users', require('./routes/users'))
+app.use('/api/users/{id}', require('./routes/users'))
 
 // On branche la route auth sur le fichier correspondant, le nom index.js est utilisé par défaut.
-app.use('/auth', require('./routes/auth'))
+app.use('/api/auth', require('./routes/auth'))
 
 // On branche les route kennels sur le fichier correspondant, le nom index.js est utilisé par défaut.
-app.use('/kennels', require('./routes/kennels'))
-app.use('/kennels/{id}', require('./routes/kennels'))
+app.use('/api/kennels', require('./routes/kennels'))
+app.use('/api/kennels/{id}', require('./routes/kennels'))
 
 // On branche les route dogs sur le fichier correspondant, le nom index.js est utilisé par défaut.
-app.use('/dogs', require('./routes/dogs'))
-app.use('/dogs/{id}', require('./routes/dogs'))
+app.use('/api/dogs', require('./routes/dogs'))
+app.use('/api/dogs/{id}', require('./routes/dogs'))
 
 app.listen(port, () => {
   console.log('Server is running on port ' + port)

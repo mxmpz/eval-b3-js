@@ -48,7 +48,7 @@ router.route('/:id')
       return res.status(500).send(error)
     }
   })
-  
+
   // Supprime un chenil précis
   .delete(withAuth, async (req, res) => {
     try {
