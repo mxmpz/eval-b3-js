@@ -8,7 +8,7 @@ function Router () {
     <Routes>
       <Route index path='/' element={<Home />} />
       <Route path='/about' element={<About />} />
-      <Route path='/Chenils' element={<Chenils />} />
+      <Route path='/kennels' element={<Chenils />} />
     </Routes>
   )
 }
