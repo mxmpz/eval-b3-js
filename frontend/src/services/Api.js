@@ -181,6 +181,18 @@ const deleteDog = async (id) => {
   }
 }
 
+// Connexion
+const login = async (credentials) => {
+  const response = await api.post('/auth/local', credentials)
+  return response.data
+}
+
+// Inscription
+const register = async (infos) => {
+  const response = await api.post('/auth/local/register', infos)
+  return response.data
+}
+
 export {
   getKennels,
   getKennelById,
@@ -192,5 +204,7 @@ export {
   getDogById,
   createDog,
   updateDog,
-  deleteDog
+  deleteDog,
+  login,
+  register
 }
